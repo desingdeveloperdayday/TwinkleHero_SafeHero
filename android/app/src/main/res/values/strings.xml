@@ -6,4 +6,5 @@
     <string name="input_phone_num">휴대폰번호 입력</string>
     <string name="send_num">인증 요청</string>
     <string name="next_step">다음단계</string>
+    <string name="title_activity_add_parent">AddParentActivity</string>
 </resources>
