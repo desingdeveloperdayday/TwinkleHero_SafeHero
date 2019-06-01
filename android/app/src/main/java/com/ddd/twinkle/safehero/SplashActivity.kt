@@ -1,7 +1,7 @@
 package com.ddd.twinkle.safehero
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 class SplashActivity : AppCompatActivity() {
@@ -12,6 +12,9 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
+        //todo("회원가입 필요한 회원인지 아닌지 분기 처리 피요함")
+
+
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
         finish()
