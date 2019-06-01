@@ -12,4 +12,6 @@
     <string name="input_in_fifty">50자 내로 입력</string>
     <string name="send_message">전달 메시지</string>
     <string name="add_parent">보호자 추가</string>
+    <string name="auth">본인 인증</string>
+
 </resources>
