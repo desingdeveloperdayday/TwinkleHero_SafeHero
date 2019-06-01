@@ -1,11 +1,15 @@
 package com.ddd.twinkle.safehero.signup.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import com.ddd.twinkle.safehero.R
 
-import kotlinx.android.synthetic.main.activity_add_parent.*
+fun Context.newIntentAddParentActivityu() : Intent{
+    val intent = Intent(this,AddParentActivity::class.java)
+    return intent
+}
 
 class AddParentActivity : AppCompatActivity() {
 
