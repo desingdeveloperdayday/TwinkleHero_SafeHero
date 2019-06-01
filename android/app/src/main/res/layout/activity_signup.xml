@@ -42,7 +42,7 @@
 
             <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="52dp"
                     android:paddingTop="7.5dp"
                     android:paddingBottom="7.5dp"
                     android:paddingLeft="8dp"
@@ -64,18 +64,16 @@
 
             <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                 <EditText
                         android:layout_width="300dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="52dp"
                         android:background="@drawable/rectangle_outline_gray_1dp"
                         android:paddingTop="7.5dp"
                         android:paddingBottom="7.5dp"
                         android:paddingLeft="8dp"
-                        android:layout_marginTop="4dp"
                         android:textSize="12.5sp"
                         android:textColor="#7e7e7e"
                         android:lineSpacingExtra="5sp"
@@ -83,7 +81,7 @@
                 <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
                     <Button
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -91,7 +89,6 @@
                             android:layout_gravity="end"
                             android:textSize="12.5sp"
                             android:paddingLeft="4.5dp"
-                            android:paddingTop="7.5dp"
                             android:paddingBottom="7.5dp"
                             android:paddingRight="4.5dp"
                             android:textColor="#111111"
@@ -119,7 +116,7 @@
                 <EditText
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="52dp"
                         android:paddingTop="7.5dp"
                         android:paddingBottom="7.5dp"
                         android:paddingLeft="8dp"

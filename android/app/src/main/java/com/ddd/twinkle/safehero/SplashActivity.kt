@@ -12,11 +12,11 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
-        //todo("회원가입 필요한 회원인지 아닌지 분기 처리 피요함")
+
+        //todo("회원가입 필요한 회원인지 아닌지 분기 처리 필요함")
 
 
-        val intent = Intent(this,MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        /*startActivity(newIntentMainActivity())
+        finish()*/
     }
 }
