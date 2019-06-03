@@ -3,14 +3,14 @@ package com.ddd.twinkle.safehero.emergency
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.ddd.twinkle.safehero.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 private const val INTENT_MAP_LAT = "lat"
 private const val INTENT_MAP_LNG = "lng"
@@ -24,11 +24,12 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_emergency)
+        setContentView(com.ddd.twinkle.safehero.R.layout.activity_emergency)
 
         val fragmentManager = fragmentManager
-        val mapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment
-        mapFragment.getMapAsync(this)
+        val mapFragment = supportFragmentManager
+            .findFragmentById(com.ddd.twinkle.safehero.R.id.map) as SupportMapFragment?
+        mapFragment!!.getMapAsync(this)
     }
 
     override fun onMapReady(map: GoogleMap?) {
