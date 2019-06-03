@@ -18,8 +18,8 @@
             android:id="@+id/scrollView"
             android:fillViewport="true"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/layout_app_bar"
-            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -100,6 +100,7 @@
             android:layout_width="match_parent"
             android:text="@string/complete"
             android:background="@color/mainColor"
+            android:textColor="@color/white"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

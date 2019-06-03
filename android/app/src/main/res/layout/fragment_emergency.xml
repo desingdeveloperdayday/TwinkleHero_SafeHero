@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EmergencyFragment">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:id="@+id/layout_call_me"
+                android:background="@color/button_background"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28.5dp"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="18sp"
+                    android:textColor="#111111"
+                    android:text="나에게 전화걸기"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/selector"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="29dp"
+                    android:text="전화를 받으면 녹음이 시작됩니다."/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/layout_message_to_me"
+                android:background="@color/dark_gray"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28.5dp"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="32dp"
+                    android:textColor="@color/white"
+                    android:text="긴급 문자 보내기"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/selector"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="29dp"
+                    android:text="보호자에게 현위치가 전송됩니다."/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/layout_call_police"
+                android:background="@color/balck"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28.5dp"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="32dp"
+                    android:textColor="@color/white"
+                    android:text="112 전화하기"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/selector"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="29dp"
+                    android:text="동시에 보호자에게 위치가 전송됩니다"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
