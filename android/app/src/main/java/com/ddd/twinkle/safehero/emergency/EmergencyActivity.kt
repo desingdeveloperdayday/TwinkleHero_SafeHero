@@ -1,11 +1,12 @@
 package com.ddd.twinkle.safehero.emergency
 
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -17,17 +18,16 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-
+const val LOCATION_PERMISSION_REQUEST_CODE = 1
 
 class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMarkerClickListener{
     override fun onMarkerClick(p0: Marker?): Boolean {
         return false
     }
 
-    lateinit var googleMap : GoogleMap
-    lateinit var currentMarker : Marker
+    lateinit var mMap : GoogleMap
+    lateinit var currentLocation : Location
 
-    lateinit var mGoogleApiClient : GoogleApiClient
     lateinit var fucsedLocationClient: FusedLocationProviderClient
 
     lateinit var locationrequest : LocationRequest
@@ -38,23 +38,57 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency)
-        //setuplocationReqest()
+        setupMapFragment()
         setupWindow()
         setupfucsedLocationClient()
-        setupMapFragment()
-       // setupGoogleApiClient()
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        mMap.uiSettings.isZoomControlsEnabled=true
+        mMap.setOnMarkerClickListener(this)
+        setupMap()
+        /* mMap.addMarker(MarkerOptions().position(currentPos).title("현재 위치"))
+         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentPos))*/
+    }
+
+    //위치 정보 허가
+    private fun setupMap() {
+
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE)
+            return
+        }
+
+        mMap.isMyLocationEnabled=true
+        fucsedLocationClient.lastLocation.addOnSuccessListener(this) {location->
+            if(location !=null){
+                currentLocation= location
+                val currentLating = LatLng(location.latitude,(location.longitude)*-1)
+                placeMakrerOnMap(currentLating)
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLating,12f))
+            }
+        }
     }
 
     private fun setupfucsedLocationClient() {
         fucsedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
-/*
+
+    /*
     private fun setupGoogleApiClient() {
         mGoogleApiClient = GoogleApiClient.Builder(this)
             .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
+            .addOnConne^ctionFailedListener(this)
             .build()
     }*/
+
+    private fun placeMakrerOnMap(location: LatLng){
+        val markerOptions = MarkerOptions().position(location)
+        mMap.addMarker(markerOptions)
+    }
 
     private fun setupMapFragment() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
@@ -71,12 +105,7 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
             .setInterval(UPDATE_INTERVAL_MS)
     }*/
 
-    override fun onMapReady(map: GoogleMap) {
-        googleMap = map
-        val currentPos = LatLng(lat,lng)
-        googleMap.addMarker(MarkerOptions().position(currentPos).title("현재 위치"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentPos))
-    }
+
 
 
 }
