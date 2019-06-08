@@ -3,7 +3,6 @@ package com.ddd.twinkle.safehero.emergency
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
@@ -73,7 +72,7 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
         val titleString = ConvertToString.getAddress(this,location)
         markerOptions.title(titleString)
-        Log.d("tag","${titleString.toString()}")
+        Timber.d("titleString ${titleString} ")
         mMap.addMarker(markerOptions)
     }
 
