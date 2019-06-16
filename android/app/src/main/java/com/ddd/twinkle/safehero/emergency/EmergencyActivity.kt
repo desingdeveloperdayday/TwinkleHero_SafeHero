@@ -3,9 +3,12 @@ package com.ddd.twinkle.safehero.emergency
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
+import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_emergency.*
 import timber.log.Timber
 
 const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -29,7 +33,21 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency)
         setupMapFragment()
+        setupButton()
         setupfucsedLocationClient()
+    }
+
+    private fun setupButton() {
+        layout_call_me.setOnTouchListener(object : View.OnTouchListener{
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                if (event?.action == MotionEvent.ACTION_BUTTON_PRESS) {
+                    if (event?.action == MotionEvent.ACTION_BUTTON_RELEASE) {
+                        startActivity(newIntentCallingActivity())
+                    }
+                }
+                return true
+            }
+        })
     }
 
     private fun setupMapFragment() {
