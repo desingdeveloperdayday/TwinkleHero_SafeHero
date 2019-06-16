@@ -20,5 +20,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="calling_info_message">전화를 받으면 녹음이 시작됩니다.</string>
+    <string name="caller">엄마</string>
+    <string name="phnoe_num">010-9876-5432</string>
+    <string name="text_send_mesage">메시지 보내기</string>
 
 </resources>

@@ -9,5 +9,6 @@
     <color name="selector">#888888</color>
     <color name="dark_gray">#40474e</color>
     <color name="balck">#111111</color>
+    <color name="calling_background">#242a34</color>
 
 </resources>

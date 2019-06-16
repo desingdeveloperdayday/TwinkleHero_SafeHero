@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigationView()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
-
     }
 
     private fun setupBottomNavigationView() {
