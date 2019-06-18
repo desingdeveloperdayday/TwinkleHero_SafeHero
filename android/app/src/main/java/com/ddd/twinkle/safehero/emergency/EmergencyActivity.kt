@@ -1,15 +1,12 @@
-/*
 package com.ddd.twinkle.safehero.emergency
 
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
-import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -39,15 +36,21 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
     }
 
     private fun setupButton() {
-        layout_call_me.setOnTouchListener(object : View.OnTouchListener{
-            override fun onTouch(v: View?, event: MotionEvent?) : Boolean {
-                if (event?.action == MotionEvent.ACTION_UP) {
-                    return true.apply {
-                        startActivity(newIntentCallingActivity())
-                    }
+        layout_call_me.setOnTouchListener { v, event ->
+            when(event?.action){
+                MotionEvent.ACTION_UP->{
+                    Timber.d("Action_Up")
+                    true
+                }
+                MotionEvent.ACTION_DOWN->{
+                    Timber.d("ACTION_DOWN")
+                    true
+                }
+                else ->{
+                    false
                 }
             }
-        })
+        }
 
 
     }
@@ -106,4 +109,3 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
 
 }
-*/
