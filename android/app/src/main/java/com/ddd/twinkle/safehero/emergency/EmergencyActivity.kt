@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
+import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -39,14 +40,16 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
         layout_call_me.setOnTouchListener { v, event ->
             when(event?.action){
                 MotionEvent.ACTION_UP->{
-                    Timber.d("Action_Up")
+                    Timber.d("t Action_Up")
+                    startActivity(newIntentCallingActivity())
                     true
                 }
                 MotionEvent.ACTION_DOWN->{
-                    Timber.d("ACTION_DOWN")
+                    Timber.d("t ACTION_DOWN")
                     true
                 }
                 else ->{
+                    Timber.d("else")
                     false
                 }
             }
