@@ -39,15 +39,16 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
     private fun setupButton() {
         layout_call_me.setOnTouchListener(object : View.OnTouchListener{
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                if (event?.action == MotionEvent.ACTION_BUTTON_PRESS) {
-                    if (event?.action == MotionEvent.ACTION_BUTTON_RELEASE) {
+            override fun onTouch(v: View?, event: MotionEvent?) : Boolean {
+                if (event?.action == MotionEvent.ACTION_UP) {
+                    return true.apply {
                         startActivity(newIntentCallingActivity())
                     }
                 }
-                return true
             }
         })
+
+
     }
 
     private fun setupMapFragment() {
