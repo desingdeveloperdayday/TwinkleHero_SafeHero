@@ -17,6 +17,7 @@
             app:layout_constraintHorizontal_bias="0.5"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
             app:itemIconTint="@color/selector"
             app:itemTextColor="@color/selector"
