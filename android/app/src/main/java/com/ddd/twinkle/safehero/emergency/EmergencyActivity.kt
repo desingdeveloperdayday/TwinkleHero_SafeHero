@@ -1,3 +1,4 @@
+/*
 package com.ddd.twinkle.safehero.emergency
 
 import android.content.pm.PackageManager
@@ -104,3 +105,4 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
 
 }
+*/
