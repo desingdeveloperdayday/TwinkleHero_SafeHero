@@ -8,34 +8,23 @@
         tools:context=".MainActivity">
 
     <FrameLayout
-            android:id="@+id/layout_google"
+            android:id="@+id/frame_container"
             android:layout_width="match_parent"
-            android:layout_height="436dp"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/layout_emergency"/>
-
-    <FrameLayout
-            android:id="@+id/layout_emergency"
-            android:layout_width="match_parent"
-            android:layout_height="437dp"
-            app:layout_constraintBottom_toTopOf="@+id/navigation"
-            app:layout_constraintTop_toBottomOf="@+id/layout_google" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
+            app:layout_constraintHorizontal_bias="0.5"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigation"
+            android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
+            app:itemIconTint="@color/selector"
+            app:itemTextColor="@color/selector"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            app:menu="@menu/main_navigation"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:background="@color/white"
+            app:menu="@menu/navigation"
+            app:layout_constraintBottom_toBottomOf="@+id/frame_container"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
