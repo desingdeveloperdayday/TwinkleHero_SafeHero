@@ -1,11 +1,15 @@
 package com.ddd.twinkle.safehero.emergency.calling
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Environment
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
 import timber.log.Timber
 
@@ -24,8 +28,16 @@ class CallingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_calling)
 
         setupButton()
-        setupRecorder()
+        setUserPermission()
         setupOutputFile()
+    }
+
+    private fun setUserPermission() {
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.RECORD_AUDIO)!=PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this, arrayOf( Manifest.permission.RECORD_AUDIO),10)
+        else
+           setupRecorder()
+        
     }
 
     private fun setupButton() {
@@ -50,5 +62,17 @@ class CallingActivity : AppCompatActivity() {
         mPath = Environment.getExternalStorageDirectory().absolutePath +"/record.aac"
         Timber.d("mPath is $mPath")
         return mPath
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+       when(requestCode){
+           10->{
+               if (grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                   setupRecorder()
+               else
+                   Toast.makeText(this,"녹음 기능이 필요합니다.",Toast.LENGTH_LONG).show()
+           }
+       }
     }
 }
