@@ -8,13 +8,13 @@ import android.media.MediaRecorder
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
+import kotlinx.android.synthetic.main.activity_calling.*
 import timber.log.Timber
 import java.io.File
-import java.io.IOException
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,81 +23,71 @@ fun Context.newIntentCallingActivity() : Intent{
     return intent
 }
 
+const val REQUEST_RECORD_AUDIO_PERMISSIONS = 200
+
 class CallingActivity : AppCompatActivity() {
 
-    lateinit var audioRecorder: MediaRecorder
-    lateinit var outFile : File
+    private var audioRecorder: MediaRecorder? = null
+
+    private var outputFileName : String? =""
+    private var dateFormat = SimpleDateFormat("YYYY-MM-dd-HH-mm-ss")
+
+    private var permissionToRecordAccepted = false
+    private var permissions = arrayOf(Manifest.permission.RECORD_AUDIO)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calling)
-        requestPermissionsForRecordAudio()
+        outputFileName = "${externalCacheDir.absolutePath}/${dateFormat.format(Date(System.currentTimeMillis()))}.mp3"
+        ActivityCompat.requestPermissions(this,permissions, REQUEST_RECORD_AUDIO_PERMISSIONS)
     }
 
     override fun onStart() {
         super.onStart()
-        setupRecorder()
+        setupButton()
     }
-    private fun requestPermissionsForRecordAudio() {
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO)!=PackageManager.PERMISSION_GRANTED)
-            ActivityCompat.requestPermissions(this, arrayOf( Manifest.permission.RECORD_AUDIO),10)
-        else {
-            setupRecorder()
-            setupOutputFile()
+
+    private fun setupButton() {
+        button_receive.setOnClickListener {
             startRecording()
         }
+        button_reject.setOnClickListener {
+            stopRecording()
+        }
+    }
+
+    private fun stopRecording() {
+        audioRecorder?.apply {
+            stop()
+            release()
+        }
+        audioRecorder=null
     }
 
     private fun startRecording() {
-        try {
-            audioRecorder.prepare()
-            audioRecorder.start()
-            Timber.d("voidce Recorder + ${outFile.absolutePath}")
-        }catch (e : IOException){
-            Timber.e(e)
-        }
-    }
-
-    private fun setupOutputFile(){
-        outFile = getOutputFile()
-        outFile.parentFile.mkdir()
-        audioRecorder.setOutputFile(outFile.absolutePath)
-    }
-
-    private fun getOutputFile() : File {
-        val dataFormat  = SimpleDateFormat("yyyyMMdd_HHMMSSss", Locale.KOREA)
-        return File(Environment.getExternalStorageDirectory().absolutePath.toString()
-        +"Voice Recorder/RECORDING_"
-        +dataFormat.format(Date())
-        +".m4a")
-    }
-
-    private fun setupRecorder() {
         audioRecorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.JELLY_BEAN){
-                this.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC)
-                this.setAudioEncodingBitRate(48000)
-            }else{
-                this.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-                this.setAudioEncodingBitRate(64000)
+            setOutputFile(outputFileName)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            try {
+                prepare()
+            }catch (e : Exception){
+                Timber.e(e)
             }
-            setAudioSamplingRate(16000)
+            start()
+            Timber.d("start")
         }
-
-
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-       when(requestCode){
-           10->{
-               if (grantResults[0]==PackageManager.PERMISSION_GRANTED)
-                   setupRecorder()
-               else
-                   Toast.makeText(this,"녹음 기능이 필요합니다.",Toast.LENGTH_LONG).show()
-           }
-       }
+        permissionToRecordAccepted = if(requestCode == REQUEST_RECORD_AUDIO_PERMISSIONS){
+            grantResults[0] ==PackageManager.PERMISSION_GRANTED
+        }else{
+            false
+        }
+        if(!permissionToRecordAccepted) finish()
     }
 }
