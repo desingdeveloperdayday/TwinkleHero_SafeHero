@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="mainColor">#f75850</color>
+    <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
     <color name="button_background">#f6f6f6</color>
     <color name="selector">#888888</color>

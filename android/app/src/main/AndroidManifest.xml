@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 
 
@@ -22,18 +24,8 @@
                 android:required="false"/>
 
         <activity android:name=".emergency.calling.CallingActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
         </activity>
         <activity android:name=".emergency.EmergencyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".signup.ui.BottomNavigation"
@@ -47,28 +39,18 @@
         <activity android:name=".signup.ui.SignupActivity">
         </activity>
         <activity android:name=".MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
         </activity>
         <activity
                 android:name=".SplashActivity"
                 android:theme="@style/SplashTheme">
-
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            -->
         </activity>
-
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyDR3isCIYbwG79srj_ufcXKNz8aqnPkaeU"/>
+                android:value="AIzaSyDMFSiDtOVO7bx0-sARbeTAn9T18NodpD4"/>
     </application>
 
 </manifest>
