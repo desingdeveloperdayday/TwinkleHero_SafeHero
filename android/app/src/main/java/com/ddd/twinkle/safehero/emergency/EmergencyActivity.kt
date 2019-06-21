@@ -1,10 +1,11 @@
 package com.ddd.twinkle.safehero.emergency
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_emergency.*
 import timber.log.Timber
 
 const val LOCATION_PERMISSION_REQUEST_CODE = 1
+private const val REQUEST_CALLING_ACTIVITY = 100
 
 class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMarkerClickListener{
 
@@ -38,17 +40,25 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
     }
 
  private fun setupButton() {
-        layout_call_me.setOnTouchListener(object : View.OnTouchListener{
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                if (event?.action == MotionEvent.ACTION_BUTTON_PRESS) {
-                    if (event?.action == MotionEvent.ACTION_BUTTON_RELEASE) {
-                        startActivity(newIntentCallingActivity())
-                    }
-                }
-                return true
-            }
-        })
-    }
+     layout_call_me.setOnTouchListener { v, event ->
+         when(event?.action){
+             MotionEvent.ACTION_UP->{
+                 Timber.d("t Action_Up")
+                 startActivity(newIntentCallingActivity())
+                 true
+             }
+             MotionEvent.ACTION_DOWN->{
+                 Timber.d("t ACTION_DOWN")
+                 true
+             }
+             else->{
+                 Timber.d("else")
+                 false
+             }
+         }
+     }
+
+ }
 
     private fun setupMapFragment() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
@@ -59,15 +69,17 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
         mMap = googleMap
         mMap.uiSettings.isZoomControlsEnabled=true
         mMap.setOnMarkerClickListener(this)
-        setupMap()
+        requestPermissionsForLocation()
     }
 
     //위치 정보 허가
-    private fun setupMap() {
+    private fun requestPermissionsForLocation() {
 
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
             return
+        }else{
+            Toast.makeText(this,"위치 정보 권한이 필요합니다",Toast.LENGTH_SHORT).show()
         }
         mMap.isMyLocationEnabled=true
         fucsedLocationClient.lastLocation.addOnSuccessListener(this) {location->
@@ -97,6 +109,16 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
 
     override fun onMarkerClick(p0: Marker?): Boolean {
         return false
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            REQUEST_CALLING_ACTIVITY->{
+
+            }
+        }
+
     }
 
 
