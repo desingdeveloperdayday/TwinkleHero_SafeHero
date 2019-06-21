@@ -8,6 +8,7 @@ import android.media.MediaRecorder
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
@@ -63,6 +64,7 @@ class CallingActivity : AppCompatActivity() {
             release()
         }
         audioRecorder=null
+        timer.stop()
     }
 
     private fun startRecording() {
@@ -79,7 +81,13 @@ class CallingActivity : AppCompatActivity() {
             start()
             Timber.d("start")
         }
+
+        timer.apply {
+            base=SystemClock.elapsedRealtime()
+            start()
+        }
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
