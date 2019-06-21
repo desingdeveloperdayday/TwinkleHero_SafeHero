@@ -1,4 +1,3 @@
-/*
 package com.ddd.twinkle.safehero.emergency
 
 import android.content.pm.PackageManager
@@ -38,8 +37,7 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
         setupfucsedLocationClient()
     }
 
-   */
-/* private fun setupButton() {
+ private fun setupButton() {
         layout_call_me.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 if (event?.action == MotionEvent.ACTION_BUTTON_PRESS) {
@@ -102,9 +100,8 @@ class EmergencyActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMar
     }
 
 
-*//*
+
 
 
 
 }
-*/
