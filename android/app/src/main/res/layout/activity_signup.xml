@@ -30,7 +30,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12.5sp"
+                    android:textSize="14sp"
                     android:textColor="#111111"
                     android:lineSpacingExtra="5.5sp"
                     android:text="@string/name"/>
@@ -40,10 +40,10 @@
                     android:layout_height="52dp"
                     android:paddingTop="7.5dp"
                     android:paddingBottom="7.5dp"
-                    android:paddingLeft="8dp"
+                    android:paddingLeft="16dp"
                     android:singleLine="true"
                     android:layout_marginTop="4dp"
-                    android:textSize="12.5sp"
+                    android:textSize="14sp"
                     android:background="@drawable/rectangle_outline_gray_1dp"
                     android:textColor="#7e7e7e"
                     android:lineSpacingExtra="5sp"
@@ -53,7 +53,7 @@
                     android:layout_marginTop="16.5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12.5sp"
+                    android:textSize="14sp"
                     android:textColor="#111111"
                     android:lineSpacingExtra="5.5sp"
                     android:text="@string/phone_num"/>
@@ -71,9 +71,9 @@
                         android:paddingTop="7.5dp"
                         android:paddingBottom="7.5dp"
                         android:singleLine="true"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="16dp"
                         android:layout_weight="0.8"
-                        android:textSize="12.5sp"
+                        android:textSize="14sp"
                         android:textColor="#7e7e7e"
                         android:lineSpacingExtra="5sp"
                         android:hint="@string/input_phone_num"/>
@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/rectangle_gray_outline_background"
-                        android:textSize="12.5sp"
+                        android:textSize="14sp"
                         android:gravity="center"
                         android:layout_weight="0.2"
                         android:paddingLeft="4.5dp"
@@ -104,7 +104,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12.5sp"
+                        android:textSize="14sp"
                         android:textColor="#111111"
                         android:lineSpacingExtra="5.5sp"
                         android:text="인증번호"/>
@@ -115,10 +115,10 @@
                         android:layout_height="52dp"
                         android:paddingTop="7.5dp"
                         android:paddingBottom="7.5dp"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="16dp"
                         android:singleLine="true"
                         android:background="@drawable/rectangle_outline_gray_1dp"
-                        android:textSize="12.5sp"
+                        android:textSize="14sp"
                         android:textColor="#7e7e7e"
                         android:lineSpacingExtra="5sp"
                         android:hint="인증번호 입력"/>
@@ -126,9 +126,10 @@
                 <TextView
                         android:id="@+id/text_timer"
                         android:layout_width="wrap_content"
+                        android:layout_gravity="end"
                         android:text="3:00"
-                        android:textSize="12.5sp"
-                        android:textColor="#7e7e7e"
+                        android:textSize="13sp"
+                        android:textColor="@color/alert_color"
                         android:lineSpacingExtra="5sp"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -137,9 +138,10 @@
     <Button
             android:id="@+id/button_nextStep"
             android:text="@string/next_step"
-            android:background="@color/mainColor"
+            android:background="@color/unalbe"
             android:textSize="12.5sp"
-            android:textColor="@color/white"
+            android:enabled="false"
+            android:textColor="@color/unalbe_text_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

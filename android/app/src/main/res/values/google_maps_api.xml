@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDR3isCIYbwG79srj_ufcXKNz8aqnPkaeU</string>
+   <!-- //soo_mac
+    <string name="google_maps_key_" templateMergeStrategy="preserve" translatable="false">AIzaSyDR3isCIYbwG79srj_ufcXKNz8aqnPkaeU</string>
+  -->
+    //st_imac
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDMFSiDtOVO7bx0-sARbeTAn9T18NodpD4</string>
 </resources>
+
