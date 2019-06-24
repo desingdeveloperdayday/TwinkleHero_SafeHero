@@ -30,14 +30,32 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--BottomNavigationTheme-->
-    <style name="bottomnavigation" parent="Widget.Design.BottomNavigationView">
+    <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">55dp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:background">@color/white</item>
         <item name="itemTextColor">@color/selector</item>
-
-
-
     </style>
+
+    <style name="BottomNavigationView2">
+        <item name="itemTextAppearanceActive">@style/TextAppearance.BottomNavigationView.Active</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.BottomNavigationView.Inactive</item>
+    </style>
+
+    <!-- blank styles for better code readability-->
+    <style name="TextAppearance"/>
+    <style name="TextAppearance.BottomNavigationView"/>
+
+    <!-- inactive tab icon style -->
+    <style name="TextAppearance.BottomNavigationView.Inactive">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- active tab icon style -->
+    <style name="TextAppearance.BottomNavigationView.Active">
+        <item name="android:textSize">10sp</item>
+    </style>
+    With TextAppearance you can control
 
 </resources>
