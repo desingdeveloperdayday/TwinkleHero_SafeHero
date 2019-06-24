@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ddd.twinkle.safehero.R
+import com.ddd.twinkle.safehero.newIntentMainActivity
 import kotlinx.android.synthetic.main.activity_add_parent.*
 import kotlinx.android.synthetic.main.app_bar.*
 
@@ -28,6 +29,10 @@ class AddParentActivity : AppCompatActivity() {
     private fun setupButton() {
         button_add_parent.setOnClickListener {
             checkParent()
+        }
+
+        button_complete.setOnClickListener {
+            startActivity(newIntentMainActivity())
         }
     }
 
