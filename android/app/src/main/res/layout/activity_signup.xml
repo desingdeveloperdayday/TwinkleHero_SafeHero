@@ -7,9 +7,11 @@
         android:layout_height="match_parent"
         android:theme="@style/AppTheme"
         tools:context=".signup.ui.SignupActivity">
+
     <include
             android:id="@+id/layout_app_bar"
             layout="@layout/app_bar"/>
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
