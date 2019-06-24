@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ddd.twinkle.safehero.R
 import kotlinx.android.synthetic.main.activity_add_parent.*
@@ -34,13 +33,15 @@ class AddParentActivity : AppCompatActivity() {
 
     private fun checkParent(){
         val arrayList= arrayListOf(R.id.parent_2,R.id.parent_3)
+
         if(idx < arrayList.size) {
             val view = findViewById<View>(arrayList[idx])
             view.visibility = View.VISIBLE
             idx++
+            if (idx == arrayList.size){
+                button_add_parent.visibility=View.GONE
+            }
         }
-        else
-            Toast.makeText(applicationContext,"보호자 최대 설정은 3명입니다",Toast.LENGTH_SHORT).show()
     }
 
     private fun setupToolbar() {
