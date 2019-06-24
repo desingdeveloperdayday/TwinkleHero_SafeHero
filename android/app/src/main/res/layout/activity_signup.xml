@@ -36,6 +36,7 @@
                     android:text="@string/name"/>
 
             <EditText
+                    android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:paddingTop="7.5dp"
@@ -65,6 +66,7 @@
                     android:layout_height="match_parent">
 
                 <EditText
+                        android:id="@+id/edit_phone"
                         android:layout_width="300dp"
                         android:layout_height="52dp"
                         android:background="@drawable/rectangle_outline_gray_1dp"
@@ -110,6 +112,7 @@
                         android:text="인증번호"/>
 
                 <EditText
+                        android:id="@+id/edit_auth_num"
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
