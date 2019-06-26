@@ -1,0 +1,108 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.BUILD-SNAPSHOT'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+		//junit 에러 추가
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+//junit 에러추가
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+dependencyManagement {
+	imports {
+		mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
+	}
+}
+
+group = 'kr.hero'
+version = '0.0.1'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+test {
+	exclude '**/*'
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+	implementation('org.apache.commons:commons-lang3')
+	//implementation('redis.clients:jedis')
+	//implementation('org.springframework.boot:spring-boot-starter-data-redis')
+	//implementation('de.codecentric:spring-boot-admin-starter-client:2.1.4')
+	runtimeOnly('mysql:mysql-connector-java')
+	compileOnly('org.projectlombok:lombok')
+
+	//getter method cannoet find symbol 에러 때문에 추가
+	annotationProcessor('org.projectlombok:lombok')
+
+	//testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+	//json 설정 (Jackson-annotation 주석을 활용, Jackson-databind 일반 데이터 바인딩 기능)
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+
+	//json-simple 추가
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	
+	//Coolsms SDK
+	compile group: 'net.nurigo', name: 'javaSDK', version: '2.2'
+
+//	//Swagger 추가
+//	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+//	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
+
+
+	//Junit4 의존성 제외
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		exclude group: 'junit', module: 'junit'
+	}
+
+	//에러 junit5 의존성 추가
+	testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+
+
+	//compile('commons-io:commons-io:2.6')
+	//implementation('com.amazonaws:aws-java-sdk-s3')
+}
+
+// src/main/java 를 리소스에 포함 시켜야 할 경우 (SqlMapper 사용하는 경우)
+// main/resources java 디렉토리를 추가 하면서 *.java 파일은 제외하는 셋팅
+sourceSets {
+	mappers.resources {
+		println 'set mapper resources'
+		srcDir file("$projectDir/src/main/java")
+		include '**/*.xml'
+	}
+	main {
+		resources {
+			srcDirs mappers.resources
+			srcDirs '/src/main/resources'
+		}
+	}
+}
+
+processResources {
+	from("mappers")
+}

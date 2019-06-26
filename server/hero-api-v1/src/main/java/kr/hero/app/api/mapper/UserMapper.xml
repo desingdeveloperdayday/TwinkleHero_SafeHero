@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.hero.app.api.mapper.UserMapper">
+
+	<select id="selectUserByMemIdx" resultType="kr.hero.app.api.model.User" parameterType="Integer">
+		SELECT *
+		FROM MEMBER
+		WHERE 1 = 1
+		AND mem_idx = #{memIdx}
+	</select>
+
+	<insert id="insertUser" parameterType="Map" useGeneratedKeys="true" keyProperty="memIdx">
+		INSERT INTO MEMBER
+		(`mem_idx`, `mem_name`, `mem_phone`, `mem_regtime`)
+		VALUES
+		(#{memIdx}, #{memName}, #{memPhone}, #{memRegtime})
+	</insert>
+
+<!--	<update id="updateUserProfile" parameterType="Map">-->
+<!--		UPDATE USER-->
+<!--		SET-->
+<!--			NICKNAME = IFNULL(#{nickname}, NICKNAME)-->
+<!--			<if test="birth != 0">-->
+<!--				, BIRTH = #{birth}-->
+<!--			</if>-->
+<!--			, GENDER = IFNULL(#{gender}, GENDER)-->
+<!--			, THUMBNAIL_IMAGE_PATH = IFNULL(#{thumbnailImagePath}, THUMBNAIL_IMAGE_PATH)-->
+<!--		WHERE USER_ID = #{userId}-->
+<!--	</update>-->
+
+
+<!--	<insert id="insertUser" parameterType="Map" useGeneratedKeys="true" keyProperty="userId">-->
+<!--		INSERT INTO USER-->
+<!--		(`RECOMMENDER_ID`, `SNS_TYPE`, `SNS_ID`, `INVITATION_CODE`, `NICKNAME`, `THUMBNAIL_IMAGE_PATH`, `BIRTH`, `GENDER`, `PLATFORM`, `DEVICE_ID`, `APP_VERSION`, `OS_VERSION`, `DEVICE_MODEL`, `CREATED_DATETIME`, `LAST_LOGIN_DATETIME`)-->
+<!--		VALUES-->
+<!--		(#{recommenderId}, #{snsType}, #{snsId}, #{invitationCode}, #{nickname}, #{thumbnailImagePath}, #{birth}, #{gender}, #{platform}, #{deviceId}, #{appVersion}, #{osVersion}, #{deviceModel}, NOW(), NOW())-->
+<!--	</insert>-->
+
+
+</mapper>

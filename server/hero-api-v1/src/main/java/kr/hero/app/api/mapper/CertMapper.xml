@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.hero.app.api.mapper.CertMapper">
+
+    <select id = "selectCertByMemPhone" resultType="kr.hero.app.api.model.CertificationDTO" parameterType="String">
+        SELECT *
+        FROM TEMP_CERTIFICATION
+        WHERE 1 = 1
+        AND cert_mem_phone = #{certMemPhone}
+    </select>
+
+    <insert id="insertCert" parameterType="Map" useGeneratedKeys="true" keyProperty="certIdx">
+        INSERT INTO TEMP_CERTIFICATION
+        (`cert_num`, `cert_date`, `cert_mem_phone`)
+        VALUES
+        (#{certNum}, #{certDate}, #{certMemPhone})
+    </insert>
+
+    <delete id="deleteCertByMemPhone" parameterType="String">
+        DELETE FROM TEMP_CERTIFICATION
+        WHERE cert_mem_phone = #{certMemPhone}
+    </delete>
+
+</mapper>
