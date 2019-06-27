@@ -23,6 +23,7 @@
             app:itemTextColor="@color/selector"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            style="@style/BottomNavigationView2"
             app:menu="@menu/navigation"
             app:layout_constraintBottom_toBottomOf="@+id/frame_container"/>
 
