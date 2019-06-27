@@ -3,11 +3,9 @@ package com.ddd.twinkle.safehero
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_bottom_navigation.*
+import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -21,6 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupBottomNavigationView()
+        setupButton()
+    }
+
+    private fun setupButton() {
+        layout_call_me.setOnClickListener {
+            startActivity(newIntentCallingActivity())
+        }
     }
 
     private fun setupBottomNavigationView() {
