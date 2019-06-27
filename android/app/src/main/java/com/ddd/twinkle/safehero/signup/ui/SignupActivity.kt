@@ -10,7 +10,6 @@ import com.ddd.twinkle.safehero.utills.toReadableTime
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.app_bar.*
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 fun Context.newIntentSignupActivity() : Intent {
     val intent = Intent(this,SignupActivity::class.java)
@@ -44,9 +43,7 @@ class SignupActivity : AppCompatActivity() {
         button_nextStep.setOnClickListener {
             startActivity(newIntentAddParentActivityu())
         }
-
-
-
+        
     }
 
     private fun startTimer() {

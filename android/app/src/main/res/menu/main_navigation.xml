@@ -3,21 +3,21 @@
 
     <item
             android:id="@+id/emergency"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_icon_emergency_on"
             android:title="긴급"/>
     <item
             android:id="@+id/safe_sservice"
-            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:icon="@drawable/ic_icon_monitoring_on"
             android:title="안심 귀가"/>
 
     <item
             android:id="@+id/community"
-            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:icon="@drawable/ic_icon_community_on"
             android:title="커뮤니티"/>
 
     <item
             android:id="@+id/and_more"
-            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:icon="@drawable/ic_icon_more_on"
             android:title="더보기"/>
 
 </menu>
