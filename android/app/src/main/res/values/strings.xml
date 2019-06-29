@@ -26,5 +26,8 @@
     <string name="phnoe_num">010-9876-5432</string>
     <string name="text_send_mesage">메시지 보내기</string>
     <string name="main_app_title">긴급</string>
+    <string name="sendmessage">안심문자가 전송되었습니다.</string>
+    <string name="message_content">[긴급알림] 홍길동님께 문제가 발생하였습니다.\n확인 즉시 통화를 시도하시고\n연락이 닿지 않을 경우 경찰에 신고하세요.</string>
+    <string name="meswsage_receiver">엄마(2313), 남자친구(3132), 홍길동(1312)</string>
 
 </resources>

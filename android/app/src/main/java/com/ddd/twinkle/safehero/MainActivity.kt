@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.ddd.twinkle.safehero.emergency.calling.CustomDialog
 import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -15,16 +16,27 @@ fun Context.newIntentMainActivity() : Intent{
 }
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var customDialog: CustomDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupBottomNavigationView()
         setupButton()
+        setupCustomButton()
+    }
+
+    private fun setupCustomButton() {
+        customDialog = CustomDialog(this)
     }
 
     private fun setupButton() {
         layout_call_me.setOnClickListener {
             startActivity(newIntentCallingActivity())
+        }
+        layout_send_message.setOnClickListener {
+            customDialog.show()
         }
     }
 

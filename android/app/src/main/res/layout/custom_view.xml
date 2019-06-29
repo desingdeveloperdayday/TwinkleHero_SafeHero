@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/close"
+            android:layout_width="14dp"
+            android:layout_marginTop="17dp"
+            android:layout_gravity="end"
+            android:src="@drawable/filled"
+            android:layout_height="14dp"/>
+
+    <TextView
+            android:layout_marginTop="10dp"
+            android:text="@string/sendmessage"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/selector"
+            android:lineSpacingExtra="7sp"
+            android:text="@string/meswsage_receiver"/>
+
+    <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#80111111"
+            android:lineSpacingExtra="1sp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/message_content"/>
+
+</LinearLayout>
