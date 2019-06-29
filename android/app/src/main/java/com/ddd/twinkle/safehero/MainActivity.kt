@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.ddd.twinkle.safehero.emergency.calling.CustomDialog
-import com.ddd.twinkle.safehero.emergency.calling.newIntentCallingActivity
+import com.ddd.twinkle.safehero.calling.CustomDialog
+import com.ddd.twinkle.safehero.calling.newIntentCallingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 

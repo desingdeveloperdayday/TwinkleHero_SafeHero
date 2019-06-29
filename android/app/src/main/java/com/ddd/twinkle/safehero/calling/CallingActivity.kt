@@ -1,21 +1,17 @@
-package com.ddd.twinkle.safehero.emergency.calling
+package com.ddd.twinkle.safehero.calling
 
 import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
 import kotlinx.android.synthetic.main.activity_calling.*
 import timber.log.Timber
-import java.io.File
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
