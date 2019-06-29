@@ -3,26 +3,22 @@
 
     <item
             android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_icon_emergency_on"
-            android:enabled="true"
-            android:title="@string/title_home"/>
+            android:icon="@drawable/icon_emergency_on"
+            android:enabled="true"/>
 
     <item
             android:id="@+id/navigation_dashboard"
-            android:icon="@drawable/ic_icon_monitoring_on"
-            android:enabled="true"
-            android:title="@string/title_dashboard"/>
+            android:icon="@drawable/icon_monitoring_on"
+            android:enabled="true"/>
 
     <item
             android:id="@+id/navigation_notifications"
-            android:icon="@drawable/ic_icon_community_on"
-            android:enabled="true"
-            android:title="@string/title_notifications"/>
+            android:icon="@drawable/icon_community_on"
+            android:enabled="true"/>
 
     <item
             android:id="@+id/navigation_info"
-            android:icon="@drawable/ic_icon_more_on"
-            android:enabled="true"
-            android:title="더보기"/>
+            android:icon="@drawable/icon_more_on"
+            android:enabled="true"/>
 
 </menu>
