@@ -12,7 +12,9 @@ import java.util.Map;
 public interface UserMapper {
 
 	User selectUserByMemIdx(Integer memIdx);
-	Integer insertUser(Map<String, Object> userInfo);
+	//User insertUser(User paramMap);
+	Integer insertUser(User user);
+	Integer updateMemberProtectorNum(User user);
 
 //	Integer updateUserProfile(Map<String, Object> param);
 //	Integer insertUser(Map<String, Object> param);

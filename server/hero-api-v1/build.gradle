@@ -19,6 +19,12 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+//war 배포 
+apply plugin: 'war'
+war {
+	baseName = 'hero-v1'
+}
+
 
 //junit 에러추가
 apply plugin: 'org.junit.platform.gradle.plugin'
@@ -47,16 +53,15 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
 	implementation('org.apache.commons:commons-lang3')
-	//implementation('redis.clients:jedis')
-	//implementation('org.springframework.boot:spring-boot-starter-data-redis')
-	//implementation('de.codecentric:spring-boot-admin-starter-client:2.1.4')
+	
+	//war배포
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
 	runtimeOnly('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
 
 	//getter method cannoet find symbol 에러 때문에 추가
 	annotationProcessor('org.projectlombok:lombok')
-
-	//testImplementation('org.springframework.boot:spring-boot-starter-test')
 
 	//json 설정 (Jackson-annotation 주석을 활용, Jackson-databind 일반 데이터 바인딩 기능)
 	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'

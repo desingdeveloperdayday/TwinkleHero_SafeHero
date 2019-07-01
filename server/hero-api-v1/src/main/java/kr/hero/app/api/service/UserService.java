@@ -18,7 +18,7 @@ public class UserService {
     UserMapper userMapper;
 
     //사용자테이블 user insert
-    public Integer insertUser(Map<String, Object> userInfo) {
-        return userMapper.insertUser(userInfo);
-    }
+//    public Integer insertUser(User userInfo) {
+//        return userMapper.insertUser(userInfo);
+//    }
 }

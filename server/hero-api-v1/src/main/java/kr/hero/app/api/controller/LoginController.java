@@ -2,7 +2,13 @@ package kr.hero.app.api.controller;
 
 
 import kr.hero.app.api.model.CertificationDTO;
+import kr.hero.app.api.model.MessageDTO;
+import kr.hero.app.api.model.ProtectorDTO;
+import kr.hero.app.api.model.User;
 import kr.hero.app.api.service.CertService;
+import kr.hero.app.api.service.IndexService;
+import kr.hero.app.api.service.MessageService;
+import kr.hero.app.api.service.ProtectorService;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
@@ -23,6 +29,15 @@ public class LoginController {
 
     @Autowired
     CertService certService;
+
+    @Autowired
+    IndexService indexService;
+
+    @Autowired
+    ProtectorService protectorService;
+
+    @Autowired
+    MessageService messageService;
 
 
     /*
@@ -117,9 +132,18 @@ public class LoginController {
     @PostMapping("/smsConfirm")
     @ResponseBody
     public Map<String, Object> smsCertNumConfirm(@RequestBody Map<String, Object> paramMap){
+
         Map<String, Object> resultMap = new HashMap<>();
         String paramCertMemPhone = (String)paramMap.get("certMemPhone");
         String paramCertNum = (String)paramMap.get("certNum");
+
+        //parameter null check
+        if((paramCertMemPhone == null && paramCertMemPhone.equals(""))
+            && (paramCertNum == null && paramCertNum.equals(""))){
+            resultMap.put("message", "잘못된 파라미터 값");
+            return resultMap;
+        }
+
 
         //핸즈폰 번호로 인증정보 가져오기
         CertificationDTO certDTO = certService.selectCertByMemPhone(paramCertMemPhone);
@@ -186,29 +210,111 @@ public class LoginController {
      *
      * param : memName(회원이름)
      * param : memPhone(회원이름)
+     * param : protectorName_1(보호자_1 이름)
+     * param : protectorPhone_1(보호자_1 전화번호)
      *
-     * param : protectorName_1(보호자 이름)
      * param(null 가능) : protectorName_2(보호자 이름)
+     * param(null 가능) : protectorPhone_2(보호자 전화)
      * param(null 가능) : protectorName_3(보호자 이름)
-     * param : protectorMemIdx(회원번호)
-     * param(null가능) : emergencyMsg(긴급메시지)
-     *
+     * param(null 가능) : protectorPhone_3(보호자 전화)
+     * param(null가능) : messageContents(긴급메시지)
      *
      * */
-    @PostMapping("/login")
+    @PostMapping("/userLogin")
     @ResponseBody
     public Map<String, Object> userLogin(@RequestBody Map<String, Object> paramMap){
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
 
-        //회원테이블 insert
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String loginDate = dateFormat.format(currentDate);
+
+        paramMap.put("memRegtime", loginDate);
+
+        User user = new User();
+        ProtectorDTO protectorDTO = new ProtectorDTO();
+
+        //필수 param null check  (memName, memPhone, memRegtime, protectorName_1)
+        if((paramMap.get("memName") != null && !paramMap.get("memName").equals(""))
+                && (paramMap.get("memPhone") != null && !paramMap.get("memPhone").equals(""))
+                && (paramMap.get("protectorName_1") != null && !paramMap.get("protectorName_1").equals(""))
+                && (paramMap.get("protectorPhone_1") != null && !paramMap.get("protectorPhone_1").equals(""))){
+
+            //회원테이블 insert
+
+            user.setMemName((String)paramMap.get("memName"));
+            user.setMemPhone((String)paramMap.get("memPhone"));
+            user.setMemRegtime((String)paramMap.get("memRegtime"));
+            user.setMemProtectorNum(1);
+
+            Integer resultMemberIn = indexService.insertUser(user);
+            resultMap.put("memIdx", user.getMemIdx()); //memIdx 반환
+
+            //보호자_1 insert
+            protectorDTO.setProtectorName((String)paramMap.get("protectorName_1"));
+            protectorDTO.setProtectorPhone((String)paramMap.get("protectorPhone_1"));
+            protectorDTO.setProtectorOrder(1);
+            protectorDTO.setProtectorMemIdx(user.getMemIdx());
+
+            //Integer resultProtector1_In = protectorService.insertProtector(protectorDTO);
+            protectorService.insertProtector(protectorDTO);
+
+        }else{
+            resultMap.put("message","잘못된 파라미터 값");
+            return resultMap;
+        }
 
 
-        //보호자테이블 insert
+        if((paramMap.get("protectorName_2") != null && !paramMap.get("protectorName_2").equals(""))
+                && (paramMap.get("protectorPhone_2") != null && !paramMap.get("protectorPhone_2").equals("")) ){
+
+            //보호자_2 insert
+            protectorDTO.setProtectorName((String)paramMap.get("protectorName_2"));
+            protectorDTO.setProtectorPhone((String)paramMap.get("protectorPhone_2"));
+            protectorDTO.setProtectorOrder(2);
+            protectorDTO.setProtectorMemIdx(user.getMemIdx());
+
+            protectorService.insertProtector(protectorDTO);
+
+            //보호자 개수 증가
+            user.setMemProtectorNum(2);
+        }
+
+        if((paramMap.get("protectorName_3") != null && !paramMap.get("protectorName_3").equals(""))
+                && (paramMap.get("protectorPhone_3") != null && !paramMap.get("protectorPhone_3").equals("")) ) {
+
+            //보호자_3 insert
+            protectorDTO.setProtectorName((String)paramMap.get("protectorName_3"));
+            protectorDTO.setProtectorPhone((String)paramMap.get("protectorPhone_3"));
+            protectorDTO.setProtectorOrder(3);
+            protectorDTO.setProtectorMemIdx(user.getMemIdx());
+
+            protectorService.insertProtector(protectorDTO);
+
+            //보호자 개수 증가
+            user.setMemProtectorNum(3);
+        }
+
 
         //긴급문자메세지테이블 insert
+        MessageDTO messageDTO = new MessageDTO();
+        if(paramMap.get("messageContents") != null && !paramMap.get("messageContents").equals("")) {
 
+            messageDTO.setMessageContents((String)paramMap.get("messageContents"));
+            messageDTO.setMessageMemIdx(user.getMemIdx());
 
+        }else{
+            messageDTO.setMessageContents("긴급상황입니다.");
+            messageDTO.setMessageMemIdx(user.getMemIdx());
+        }
+
+        messageService.insertMessage(messageDTO);
+        indexService.updateMemberProtectorNum(user);
+
+        resultMap.put("memProtectorNum", user.getMemProtectorNum());
+
+        resultMap.put("message", "success");
 
         return resultMap;
 

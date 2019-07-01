@@ -15,9 +15,9 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private Integer memIdx;
-	//private String memEgMsg;
 	private String memName;
 	private String memPhone;
 	private String memRegtime;
+	private Integer memProtectorNum;
 	//@JsonIgnore  private MultipartFile thumbnailImageFile;
 }

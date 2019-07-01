@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.hero.app.api.mapper.ProtectorMapper">
+
+    <insert id="insertProtector" parameterType="kr.hero.app.api.model.ProtectorDTO" useGeneratedKeys="true" keyProperty="protectorIdx">
+        INSERT INTO PROTECTOR
+        (`protector_name`, `protector_phone`, `protector_order` ,`protector_mem_idx`)
+        VALUES
+        (#{protectorName}, #{protectorPhone}, #{protectorOrder}, #{protectorMemIdx})
+
+    </insert>
+
+
+</mapper>

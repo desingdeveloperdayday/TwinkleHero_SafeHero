@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 
 @Slf4j
 @Service
@@ -41,5 +43,16 @@ public class IndexService {
 	public User selectUser(int memIdx) {
 		return userMapper.selectUserByMemIdx(memIdx);
 	}
+
+	public Integer insertUser(User user){
+
+		return userMapper.insertUser(user);
+	}
+
+	public void updateMemberProtectorNum(User user){
+		userMapper.updateMemberProtectorNum(user);
+	}
+
+
 
 }

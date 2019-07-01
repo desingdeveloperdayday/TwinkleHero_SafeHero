@@ -10,7 +10,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ProtectorDTO implements Serializable {
 	private Integer protectorIdx;
+
 	private Integer protectorOrder;
 	private String protectorName;
+	private String protectorPhone;
+
 	private Integer protectorMemIdx;
 }

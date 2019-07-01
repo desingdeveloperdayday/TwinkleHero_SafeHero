@@ -9,24 +9,24 @@
 		AND mem_idx = #{memIdx}
 	</select>
 
-	<insert id="insertUser" parameterType="Map" useGeneratedKeys="true" keyProperty="memIdx">
+	<insert id="insertUser" parameterType="kr.hero.app.api.model.User" useGeneratedKeys="true" keyProperty="memIdx">
 		INSERT INTO MEMBER
-		(`mem_idx`, `mem_name`, `mem_phone`, `mem_regtime`)
+		(`mem_name`, `mem_phone`, `mem_regtime`, `mem_protector_num`)
 		VALUES
-		(#{memIdx}, #{memName}, #{memPhone}, #{memRegtime})
+		(#{memName}, #{memPhone}, #{memRegtime}, #{memProtectorNum})
+
+<!--		<selectKey resultType="Integer" keyProperty="memIdx" order="AFTER">-->
+<!--			SELECT LAST_INSERTT_ID()-->
+<!--		</selectKey>-->
 	</insert>
 
-<!--	<update id="updateUserProfile" parameterType="Map">-->
-<!--		UPDATE USER-->
-<!--		SET-->
-<!--			NICKNAME = IFNULL(#{nickname}, NICKNAME)-->
-<!--			<if test="birth != 0">-->
-<!--				, BIRTH = #{birth}-->
-<!--			</if>-->
-<!--			, GENDER = IFNULL(#{gender}, GENDER)-->
-<!--			, THUMBNAIL_IMAGE_PATH = IFNULL(#{thumbnailImagePath}, THUMBNAIL_IMAGE_PATH)-->
-<!--		WHERE USER_ID = #{userId}-->
-<!--	</update>-->
+	<update id="updateMemberProtectorNum" parameterType="kr.hero.app.api.model.User">
+		UPDATE MEMBER
+		SET
+			mem_protector_num = #{memProtectorNum}
+
+		WHERE mem_idx = #{memIdx}
+	</update>
 
 
 <!--	<insert id="insertUser" parameterType="Map" useGeneratedKeys="true" keyProperty="userId">-->

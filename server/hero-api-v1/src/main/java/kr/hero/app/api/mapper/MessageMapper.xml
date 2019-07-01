@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.hero.app.api.mapper.MessageMapper">
+
+    <insert id="insertMessage" parameterType="kr.hero.app.api.model.MessageDTO" useGeneratedKeys="true" keyProperty="messageIdx">
+        INSERT INTO MESSAGE
+        (`message_contents`, `message_mem_idx`)
+        VALUES
+        (#{messageContents}, #{messageMemIdx})
+
+    </insert>
+
+
+</mapper>
