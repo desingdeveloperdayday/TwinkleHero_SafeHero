@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.ddd.twinkle.safehero.calling.CustomDialog
 import com.ddd.twinkle.safehero.calling.newIntentCallingActivity
+import com.ddd.twinkle.safehero.monitoring.newIntentMonitoringAcrtivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_dashboard->{
                 Timber.d("navigation_dashboard")
+                startActivity(newIntentMonitoringAcrtivity())
                 return true
             }
             R.id.navigation_notifications->{
