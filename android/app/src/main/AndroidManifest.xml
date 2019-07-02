@@ -26,6 +26,16 @@
         </activity>
         <activity android:name=".monitoring.MonitoringActivity">
         </activity>
+        <activity android:name=".emergency.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".calling.RecordActivity">
         </activity>
 
@@ -53,16 +63,11 @@
         <activity
                 android:name=".SplashActivity"
                 android:theme="@style/SplashTheme">
-            <!-- <intent-filter>
-                 <action android:name="android.intent.action.MAIN"/>
-
-                 <category android:name="android.intent.category.LAUNCHER"/>
-             </intent-filter>-->
         </activity>
 
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyDR3isCIYbwG79srj_ufcXKNz8aqnPkaeU"/>
+                android:value="AIzaSyDMFSiDtOVO7bx0-sARbeTAn9T18NodpD4"/>
     </application>
 
 </manifest>
