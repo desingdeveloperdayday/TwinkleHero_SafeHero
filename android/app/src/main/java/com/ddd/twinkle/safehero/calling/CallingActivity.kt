@@ -47,7 +47,10 @@ class CallingActivity : AppCompatActivity() {
 
     private fun setupButton() {
         button_receive.setOnClickListener {
-            startRecording()
+
+           /* //기존 녹음 기능
+            startRecording()*/
+            startActivity(newIntentRecordActivity())
         }
         button_reject.setOnClickListener {
             stopRecording()

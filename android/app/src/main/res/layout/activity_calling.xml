@@ -97,8 +97,5 @@
             android:text="@string/text_send_mesage" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="32dp"/>
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                                android:id="@+id/guideline" app:layout_constraintGuide_begin="20dp"
-                                                android:orientation="horizontal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
