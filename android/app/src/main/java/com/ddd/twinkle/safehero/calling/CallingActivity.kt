@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.ddd.twinkle.safehero.R
@@ -52,19 +51,8 @@ class CallingActivity : AppCompatActivity() {
             startRecording()*/
             startActivity(newIntentRecordActivity())
         }
-        button_reject.setOnClickListener {
-            stopRecording()
-        }
     }
 
-    private fun stopRecording() {
-        audioRecorder?.apply {
-            stop()
-            release()
-        }
-        audioRecorder=null
-        timer.stop()
-    }
 
     private fun startRecording() {
         audioRecorder = MediaRecorder().apply {
@@ -81,10 +69,6 @@ class CallingActivity : AppCompatActivity() {
             Timber.d("start")
         }
 
-        timer.apply {
-            base=SystemClock.elapsedRealtime()
-            start()
-        }
     }
 
 
