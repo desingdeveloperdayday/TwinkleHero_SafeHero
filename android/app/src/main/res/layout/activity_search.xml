@@ -17,7 +17,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
     <TableLayout
             android:id="@+id/layout_tab"
             android:layout_width="match_parent"
