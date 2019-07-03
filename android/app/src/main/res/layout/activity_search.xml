@@ -41,13 +41,18 @@
            android:orientation="horizontal"
            android:layout_width="match_parent"
            android:layout_height="49dp">
-       <TextView
+       <!--<TextView
                android:gravity="center"
                android:layout_weight="1"
                android:text="현위치"
                android:background="@drawable/rectangle_outline_gray_1dp"
                android:textSize="14sp"
                android:layout_width="wrap_content"
+               android:layout_height="match_parent"/>-->
+       <ImageButton
+               android:layout_weight="1"
+               android:background="@drawable/btn_mylocation"
+               android:layout_width="0dp"
                android:layout_height="match_parent"/>
        <TextView
                android:gravity="center"

@@ -51,4 +51,7 @@ dependencies {
 
     //rxbinding
     implementation "com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2"
+
+    //Naver Map API
+    implementation 'com.naver.maps.open:naver-map-ncp-api:2.1.7'
 }
