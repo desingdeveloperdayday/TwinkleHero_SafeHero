@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <Chronometer
+    <TextView
             android:id="@+id/timer"
             android:layout_width="match_parent"
             android:background="@color/balck"
