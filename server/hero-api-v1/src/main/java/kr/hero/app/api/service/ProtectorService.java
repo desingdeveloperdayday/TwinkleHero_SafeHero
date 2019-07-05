@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -18,5 +20,10 @@ public class ProtectorService {
     public Integer insertProtector(ProtectorDTO protectorDTO){
 
         return protectorMapper.insertProtector(protectorDTO);
+    }
+
+    public List<ProtectorDTO> selectProtectorByMemIdx(Integer memIdx){
+
+        return protectorMapper.selectProtectorByMemIdx(memIdx);
     }
 }

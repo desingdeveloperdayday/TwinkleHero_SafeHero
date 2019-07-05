@@ -11,4 +11,13 @@
     </insert>
 
 
+
+    <select id="selectProtectorByMemIdx" resultType="kr.hero.app.api.model.ProtectorDTO" parameterType="Integer">
+        SELECT *
+        FROM PROTECTOR
+        WHERE 1 = 1
+        AND protector_mem_idx = #{memIdx}
+    </select>
+
+
 </mapper>

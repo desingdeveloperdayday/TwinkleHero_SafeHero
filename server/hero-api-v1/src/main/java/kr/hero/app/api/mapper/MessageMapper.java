@@ -9,4 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MessageMapper {
 
     Integer insertMessage(MessageDTO messageDTO);
+    MessageDTO selectMessageByMemIdx(Integer memIdx);
+
 }

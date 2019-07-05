@@ -19,4 +19,8 @@ public class MessageService {
 
         messageMapper.insertMessage(messageDTO);
     }
+
+    public MessageDTO selectMessageByMemIdx(Integer memIdx){
+        return messageMapper.selectMessageByMemIdx(memIdx);
+    }
 }

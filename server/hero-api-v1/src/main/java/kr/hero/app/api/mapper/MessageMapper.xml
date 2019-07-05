@@ -11,4 +11,12 @@
     </insert>
 
 
+    <select id="selectMessageByMemIdx" resultType="kr.hero.app.api.model.MessageDTO" parameterType="Integer">
+        SELECT *
+        FROM MESSAGE
+        WHERE 1 = 1
+        AND message_mem_idx = #{memIdx}
+    </select>
+
+
 </mapper>

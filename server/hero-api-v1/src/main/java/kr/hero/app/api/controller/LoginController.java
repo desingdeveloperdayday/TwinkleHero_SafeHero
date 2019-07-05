@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 @RequestMapping("/login")
@@ -92,6 +89,7 @@ public class LoginController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date currentTime = new Date();
 			String smsSendTime = dateFormat.format(currentTime);
+			System.out.println(smsSendTime);
 
             //인증번호 Info Map
             Map<String, Object> certInfoMap = new HashMap<>();
@@ -144,12 +142,34 @@ public class LoginController {
             return resultMap;
         }
 
-
         //핸즈폰 번호로 인증정보 가져오기
-        CertificationDTO certDTO = certService.selectCertByMemPhone(paramCertMemPhone);
+        //CertificationDTO certDTO = certService.selectCertByMemPhone(paramCertMemPhone);
+        //String certDateStr = certDTO.getCertDate();
+        //System.out.println(certDateStr);
+
+
+        //핸드폰 인증번호 가져오기
+        CertificationDTO certDTO = new CertificationDTO();
+        List<CertificationDTO> certDTOList = certService.selectCertByMemPhone(paramCertMemPhone);
+
+
+        //만약 사용자가 인증을 하지 않아서 인증번호 테이블에 데이터가 여러개가 되었다면 가장 최근 인증번호 검색
+        if(certDTOList.size() != 1) {
+            int maxCertIdx = 0;
+
+            for(CertificationDTO tempDTO : certDTOList){
+                if(maxCertIdx < tempDTO.getCertIdx()) {
+                    maxCertIdx = tempDTO.getCertIdx();
+
+                    certDTO = tempDTO;
+                }
+            }
+
+        }else{
+            certDTO = certDTOList.get(0);
+        }
 
         String certDateStr = certDTO.getCertDate();
-		System.out.println(certDateStr);
 
 		//인증시간 3분체크
         try{
